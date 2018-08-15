@@ -1,4 +1,4 @@
-# <center>前端开发规范</center>
+# 前端开发规范
 
 > 程序是写给人读的，只是偶尔让计算机执行一下&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --Donald Knuth
 
@@ -12,7 +12,6 @@
 
  - 在团队开发中，所有的代码风格看起来风格一致是极其重要的
 
-     
 
 ## 1. JavaScript书写规范
 
@@ -23,7 +22,7 @@
 #### 1.1 缩进的层级
 
 - 使用空格符缩进，目前团队选择主要有两种，一种是4个空格的缩进，一种是2个空格的缩进
-*（个人建议用四个空格缩进，这种情况下的代码展示是最优的）*
+  *（个人建议用四个空格缩进，这种情况下的代码展示是最优的）*
 ---
 
 #### 1.2 语句结尾
@@ -44,7 +43,7 @@ function getDate() {
         title:'book'
     }
 }
-``` 
+```
 ---
 #### 1.3行的长度
 
@@ -76,6 +75,62 @@ let result = something + anotherThing + yetAnotherThing + somethingElse+
 - 在多行或单行注释之前
 
 - 在方法的逻辑片段之间插入空行，提高可读性
+---
+#### 1.5.1 关于间距
+
+- 运算符:前后各留一个空格
+
+``` 
+sName = 'harley';
+
+if (value === item);
+
+if(found && (count > 10))
+
+```
+
+- 括号间距:使用括号时,紧接左括号和紧接右括号之间不应该有空格
+
+```
+if (condition) {
+    ```````````
+}
+
+```
+
+- 标识符后留一个空格
+
+```
+let sName = 'harley';
+function getName() {
+
+}
+```
+
+- 函数的形参和实参逗号之后留一个空格
+
+```
+function getName(myName, yourName) {
+
+}
+getName('my', 'your');
+```
+
+- 块语句的括号左右各留一个空格
+
+```
+  if (condition) {
+
+  }
+  switch (whichCase) {
+
+  }
+  while (true) {
+
+  }
+```
+
+- 函数的括号右侧留一个空格
 ---
 
 #### 1.6 命名
@@ -115,7 +170,7 @@ let sName = `the count is ${count}`
 let num = 010;
 ```
 - null: null是一个特殊值。（null == undefined 为true）因此，常常遭到误解。我们在下列场景应该使用null。 **理解null的最好方式是将它当做对象的占位符**
-  
+
    - 用来初始化一个变量，这个变量可能赋值为一个对象
 
    - 用来和一个已经初始化的变量比较,这个变量可以是也不可以是一个对象
@@ -170,11 +225,11 @@ if(person !== null){
 ### 2.注释
 
 #### 2.1 单行注释
-  
+
   - 以 // 开始，以行尾结束，而且建议在**双斜杠后给一个空格**
-  
+
   - 独占一行的时候，用于解释下一行的代码，**这样的注释之前应该要有一个空行**。缩进级别应该和下一行代码保持一致。
-  
+
   - 在代码行的尾部的注释，**代码结束到注释之间至少有一个缩进** ,如果注释超过当前行的最大字符数限制，就将这条注释放置在代码行的上方。
 
   ```
@@ -185,7 +240,7 @@ if(person !== null){
       allowed();
   }
   ```
-  ---
+---
 #### 2.2 多行注释
 
 - 多行注释应该在每一行加上*号,第一行和最后一行独占一行。注释与星号之间有一个空格。多行注释之前应当有一个空行。且缩进与下面的代码一致
@@ -256,7 +311,7 @@ if (condition) {
 ```
 - switch语句：建议
   - 每条case语句都相对于switch关键字都缩进一个层级。
-  
+
   - 从第二条语句开始时，每条case语句前后各有一个空行。增加可读性
 
   - 每一条case语句都要有break，return或throw做结尾。避免出现连续执行的情况（特殊情况应该给以注释）
@@ -284,7 +339,7 @@ switch (condition) {
 > ES5中有两种for循环（for in）和 传统for循环。ES6有 (for of) 表明，任何具有迭代器属性的对象都是可以遍历循环的 
 
   - 应避免在传统for循环中，使用continue语句。
-  
+
   - for in 循环用来遍历对象的属性的。(包含对象自身的属性和从原型对象继承来的属性)，出于这个原因，建议使用实例方法hasOwnProperty()属性来进行过滤对象自身的属性。但是不应该使用此方法来遍历数组。
 
   ```
@@ -296,7 +351,7 @@ for (key in object) {
       }
 }
   ```
-  ---
+---
 ## 4.变量，函数和运算符
 
 ### 4.1 变量声明
@@ -465,6 +520,8 @@ while (true) {
 
 - 复杂客户端模板
 
+---
+
 ### 第二: 避免使用全部变量
 
 #### 1.全局变量带来的问题
@@ -493,7 +550,7 @@ let myGlobal = {
     Event: {},
     init: {}
 }
-``` 
+```
 - 提供一个创建命名空间的方法  [此方法来源于Maintainable JavaScript ]
 
 ```
@@ -520,7 +577,266 @@ myGlobal.namespace('agent.dom.query')
 
 - 使用ES6的块级作用域或者立即执行函数,这里不多做阐述
 
+---
+
 ### 第三: 事件处理
+
+#### 1.典型用法
+
+- 事件触发时,通常都要用事件对象event来作为参数回传给回调函数,用作事件处理的程序中,event对象包含了所有和事件相关的信息.而通常在很多场景下,我们只需要用到事件对象的很少一部分信息
+
+```
+// 不好的写法
+function handle(event) {
+    let div = document.getElementById('div');
+    div.style.left = event.clientX + 'px';
+    div.style.top = event.clientY + 'px';
+    div,className = 'al-main'
+}
+
+elem.addEventListener('click',handle);
+
+```
+
+---
+
+#### 2.遵循的规则 1: 隔离应用逻辑
+
+- 上述案例中:事件处理程序包含了两方面,一个是用户行为的处理**即点击事件的处理函数**,一个是应用逻辑的处理**即给指定的元素设置属性,类名**
+
+> 应用逻辑是和应用相关的功能性代码,而不是和用户行为相关的.
+
+- ***将应用逻辑从所有事件处理程序中抽离的做法是一种最佳实践***,理由如下
+     
+     - 因为说不定在其他地方会触发同一段逻辑或者相似的逻辑
+     
+     - 测试时,如果要直接触发功能型代码,还需要模拟事件的发生,这不是测试的最佳方法
+
+     - 最佳方法是调试功能型代码,单个函数的调用.
+
+```
+// 好的做法-拆分应用逻辑
+let myGlobal = {
+    handle: function(event) {
+        this.showPop(event);
+    },
+
+    showPop: function(event) {
+        let div = document.getElementById('div');
+        div.style.left = event.clientX + 'px';
+        div.style.top = event.clientY + 'px';
+        div,className = 'al-main';
+    }
+}
+
+elem.addEventListener('click',function(event) {
+    myGlobal.handle(event);
+})
+```  
+- 现在,事件处理程序只做了一件事,就是调用 myGlobal.handle().也就是-用户行为的处理只做了一件事.应用逻辑被剥离出去.从而,同一段功能代码的调用就可以在多点发生.
+
+- 也就是说事件处理程序应该专注于 处理用户行为.而所有的应用逻辑 都放在行为逻辑的函数中来处理.这就是隔离应用逻辑.让事件专注于处理行为逻辑.
+
+---
+
+#### 3.规则2: 不要分发事件对象
+
+- 上述代码存在的问题,虽然应用逻辑被剥离出来,**但是事件对象却被无节制的分发**.即使应用逻辑只使用了事件对象的其中两个属性.
+
+- **应用逻辑不应当依赖于event对象来正确完成功能**,理由如下:
+  
+  - 方法的接口并没有表明哪些数据是必要的.将event对象作为参数并不能告诉你event的哪些属性是有用的,用来干什么
+
+  - 如果进行单元测试,还要重新创建一个event对象传入
+
+  - 这样代码就有点不清晰,容易导致bug
+
+- 最佳的实践方法是,让事件处理程序使用event来处理用户的行为逻辑,然后拿到具体需要的属性来处理应用逻辑,改写上述代码
+
+```
+// 好的做法
+let myGlobal = {
+    handle: function(event) {
+        this.showPop(event.clientX,event.clientY);
+    },
+
+    showPop: function(x,y) {
+        let div = document.getElementById('div');
+        div.style.left = x + 'px';
+        div.style.top = y + 'px';
+        div,className = 'al-main';
+    }
+}
+
+elem.addEventListener('click',function(event) {
+    myGlobal.handle(event);
+})
+```
+
+-***处理事件时,最好让事件处理程序成为接触到event对象的唯一的函数,事件处理函数在进入应用逻辑之前针对event对象执行任何必要的操作,包括阻止默认事件或阻止事件冒泡.***
+
+```
+// 好的做法
+let myGlobal = {
+    
+    // 行为逻辑
+    handle: function(event) {
+        event.preventDefault();
+        event.stopProgation();
+        this.showPop(event.clientX,event.clientY);
+    },
+
+    // 应用逻辑
+    showPop: function(x,y) {
+        let div = document.getElementById('div');
+        div.style.left = x + 'px';
+        div.style.top = y + 'px';
+        div,className = 'al-main';
+    }
+}
+
+elem.addEventListener('click',function(event) {
+    myGlobal.handle(event);
+})
+```
+
+---
+
+### 第四: 避免 **'空比较'**
+
+#### 1. 检测原始值
+
+- typeof 用来检测 number string boolean undefined symbol
+
+- null 直接用 === 和 !=== 检测 建议检测null
+
+```
+let elem = document.getElementById('div');
+if (elem !== null) {
+    // code
+}
+```
+
+---
+
+
+#### 2. 检测引用值
+
+- 在JavaScript中,除了原始值之外的都是引用值.如:Object Array Date Error Function
+
+- 使用instanceof .
+
+> 补充 instanceof 的原理是: 先检测这个实例的构造器,之后在该实例的原型链上进行检测,一旦发现该对象,即返回true,否则返回false
+
+```
+function Person() {
+    this.name = 'harley';
+}
+function Male() {
+    this.name = 'male';
+}
+let p1 = new Person();
+
+Object.setPrototypeof(Person,Male.prototype);
+
+let p2 = new Person();
+p1 instanceof Person    // true
+p1 instanceof Male    // false
+
+p2 instanceof Person    // true
+p2 instanceof Male    // true
+```
+
+---
+
+#### 3.检测数组
+
+- 直接使用Array,isArray()
+
+```
+// 原理
+Object.prototype.toString().call(value) === '[object Array]'
+```
+
+---
+
+#### 4.检测属性
+
+- 推荐使用 in 操作符
+
+
+- 执行更快,因为只判断属性是否存在,而不会去尝试读取属性的值,所以可以规避一些属性为 ' ' 0 false null undefined 的值
+
+
+---
+
+### 第五: 将配置数据从代码中抽离
+
+#### 1.什么是配置数据
+
+- 配置数据是应用中写死(hardcoded)的值,且将来可能会被修改
+
+- URL 
+
+- 需要展示给用户的字符串
+
+- 重复的值
+
+- 需要进行设置的值
+
+- 任何可能发生变更的值
+
+---
+
+
+#### 2.抽离配置数据
+
+```
+// 将配置数据抽离出来
+let config = {
+    MSG_INVALID_VALUE: 'Invalid value',
+    URL_INVALID: '/errors/invalid.php',
+    CSS_SELECTED: 'selected',
+};
+
+function validate(value) {
+    if (!value) {
+        alert(config.MSG_INVALID_VALUE);
+        location.href = config.URL_INVALID;
+    }
+}
+```
+
+---
+
+
+#### 3.保存配置数据
+
+- 清晰的分隔数据和应用逻辑
+
+- 方法有很多种,也有很多插件可供使用,自行谈论选择如: JSONP 等
+
+---
+
+### 第六: 抛出自定义错误
+
+---
+
+### 第七: 不是你的对象请不要修改它
+
+---
+
+### 第八: 浏览器的嗅探
+
+---
+
+## 自动化工程
+
+### 1.
+
+
+
+
 
 
 
