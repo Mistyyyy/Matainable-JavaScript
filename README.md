@@ -58,7 +58,7 @@ function getDate() {
 callFunction(document,element.window,'some String value',true,123,
         navigator);
 ```
-- 有一个例外，就是给变量赋值的时候，第二行的位置应当和赋值运算符符位置保持对其
+- 有一个例外，就是给变量赋值的时候，第二行的位置应当和赋值运算符位置保持对其
 
 ```
 
@@ -472,7 +472,7 @@ while (true) {
 
 
 # 参考[知识点]
->> **下列内容是自己根据实践和参考书做的比较综合的总结**
+>> **下列内容是自己根据实践和参考文献做出的比较综合的总结**
 
 ## **编程实践**
 
@@ -594,7 +594,7 @@ function handle(event) {
     div,className = 'al-main'
 }
 
-elem.addEventListener('click',handle);
+elem.addEventListener('click',);
 
 ```
 
